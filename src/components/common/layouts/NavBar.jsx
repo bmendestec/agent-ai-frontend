@@ -35,7 +35,7 @@ export function NavBar({ children }) {
                         Users
                     </Button>
                 </div>
-            </div>            
+            </div>
             <div id='nav-header'>
                 <div className="logout-button-container">
                     <Button
@@ -46,7 +46,9 @@ export function NavBar({ children }) {
                     </Button>
                 </div>
             </div>
-            {typeof children === 'function' ? children({ isOpen }) : children}
+            <div className='main-container'>
+                {children}
+            </div>
         </>
     )
 }
