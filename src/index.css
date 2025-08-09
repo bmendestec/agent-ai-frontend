@@ -1,0 +1,20 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --primary-color: rgba(112, 112, 112, 0.302);
+  --secondary-color: rgba(0, 0, 0, 0.3);
+  --text-color: #0f0f0f;
+  --border-color: rgb(148, 146, 146);
+  --shadow-color: rgba(175, 175, 175, 0.3);
+}
