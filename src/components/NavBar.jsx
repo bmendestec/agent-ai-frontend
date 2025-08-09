@@ -30,14 +30,16 @@ export function NavBar({ children }) {
                             Users
                         </button>
                     </div>
-                    <div className="logout-button">
-                        <button
-                            onClick={logout}
-                            className="drop-down-toggle"
-                        >
-                            <LogOut size={40} style={{ color: "black" }} />
-                        </button>
-                    </div>
+                </div>
+            </div>
+            <div id='nav-header'>
+                <div className="logout-button-container">
+                    <button
+                        onClick={logout}
+                        className='logout-button'
+                    >
+                        <LogOut size={25} style={{ color: "black" }} />
+                    </button>
                 </div>
             </div>
             {children}

@@ -1,20 +1,13 @@
-.logout-button {
-    width: 90%;
-}
-
 .navbar-container {
-    display: flex;
-    height: 100%;
-    align-items: center;
+    display: grid;
+    grid-template-rows: 5vh auto;
+    grid-template-columns: 200px auto;
+    height: 100vh;
 }
 
 #navbar {
-    height: 100%;
-    width: 10%;
     background-color: var(--secondary-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    grid-row: 1 / span 2;
 }
 
 #container-nav {
@@ -22,8 +15,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 10px;
     margin-bottom: 10px;
+}
+
+#nav-header {
+    background-color: var(--secondary-color);
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #brand {
@@ -36,10 +36,24 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
+    justify-content: center;
 }
 
-.nav-button {
-    /* width: 20%; */
+.logout-button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logout-button {
+    padding: 5px;
+    width: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.logout-button:hover {
+    background-color: gray;
 }
 
 .nav-button:hover {
