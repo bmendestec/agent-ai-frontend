@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useUsers } from "../hooks/useUsers";
-import { Trash2 } from "lucide-react";
+import { Edit2, Trash2 } from "lucide-react";
+import './UsersList.css';
 
 export default function UsersList() {
     const { fetchUserData, handleDeleteUser, loading } = useUsers();
@@ -15,15 +16,19 @@ export default function UsersList() {
         fetchUsers();
     }, []);
 
+    const handleEdit = (id) => {
+        alert(`You've clicked on the ${id} user id`);
+    }
+
     return (
         <>
             <div className='title'>
-                <h2>Users list</h2>
+                <h1>Users list</h1>
             </div>
             {loading ? (
                 <span className="visually-hidden">Loading...</span>
             ) :
-                <div style={{ overflowY: "auto" }}>
+                <div className="list-container">
                     <table hover>
                         <thead>
                             <tr>
@@ -33,18 +38,29 @@ export default function UsersList() {
                                 <th style={{ width: '10%', textAlign: 'center' }}> Gender </th>
                                 <th style={{ width: '10%', textAlign: 'center' }}> Email </th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             {users.map((user) => (
                                 <tr key={user.id}
-                                    onDoubleClick={() => alert(`You've clicked on the ${user.id} user id`)}
+                                    onDoubleClick={() => { handleEdit(user.id) }}
                                 >
                                     <td>{user.name}</td>
                                     <td>{user.age}</td>
                                     <td>{new Date(user.birth_date).toLocaleDateString('pt-BR')}</td>
                                     <td>{user.gender}</td>
                                     <td>{user.email}</td>
+                                    <td>
+
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleEdit(user.id)
+                                            }}>
+                                            <Edit2 />
+                                        </button>
+                                    </td>
                                     <td>
 
                                         <button
@@ -58,7 +74,7 @@ export default function UsersList() {
                                 </tr>
                             ))}
                         </tbody>
-                    </ table>                   
+                    </ table>
                 </div>
             }
         </>
