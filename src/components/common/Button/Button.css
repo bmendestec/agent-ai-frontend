@@ -1,0 +1,43 @@
+.button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.button--default {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.button--nav {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.button--nav:hover {
+    background-color: var(--hover-color);
+}
+
+.button--active {
+    background-color: var(--hover-color);
+    font-weight: bold;
+}
+
+.button--logout {
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button--logout:hover {
+    background-color: var(--hover-color);
+}
