@@ -13,6 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   --primary-color: rgba(112, 112, 112, 0.302);
+  --primary-color-logged: rgba(255, 255, 255, 0.925);
   --secondary-color: rgba(0, 0, 0, 0.3);
   --text-color: #0f0f0f;
   --border-color: rgb(148, 146, 146);
