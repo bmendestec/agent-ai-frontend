@@ -23,6 +23,14 @@
     transition: grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.c-collapsed {
+    gap: 20px;
+}
+
+.c-uncollapsed {
+    gap: 5px;
+}
+
 #navbar {
     background-color: var(--secondary-color);
     grid-row: 1 / span 2;
