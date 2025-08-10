@@ -12,7 +12,17 @@
     border-radius: 4px;
 }
 
+.button--collapsed {
+    background-color: transparent;
+    color: var(--text-color-light);
+}
+
 .button--nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     font-weight: 500;

@@ -1,13 +1,13 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import '../../../styles/NavBar.css';
+import '../layouts/Navbar.css';
 import { useAuth } from '../../../context/AuthContext';
-import { ArrowBigLeft, HomeIcon, LogOut } from 'lucide-react';
-import { Button } from '../Button';
+import { ArrowBigLeft, ArrowBigRight, HomeIcon, LogOut, User2Icon } from 'lucide-react';
+import { Button } from '../button/button';
 
 export function NavBar({ children, isOpen, setIsOpen }) {
     const navigate = useNavigate();
     const location = useLocation();
-    const { logout } = useAuth();
+    const { logout, userName } = useAuth();
     const isActive = (path) => location.pathname === path;
 
     return (
@@ -21,28 +21,53 @@ export function NavBar({ children, isOpen, setIsOpen }) {
                         </>
                     ) : (
                         <>
-                            <HomeIcon />
+                            <ArrowBigRight />
                         </>
                     )}
                 </div>
-                <div className='contents-nav-buttons'>
-                    <Button
-                        onClick={() => { navigate('/home') }}
-                        variant="nav"
-                        isActive={isActive('/home')}
-                    >
-                        Home
-                    </Button>
-                    <Button
-                        onClick={() => { navigate('/usuarios') }}
-                        variant="nav"
-                        isActive={isActive('/usuarios')}
-                    >
-                        Users
-                    </Button>
+                <div className={`contents-nav-buttons ${!isOpen ? "c-uncollapsed" : "c-collapsed"}`}>
+                    {!isOpen ? (
+                        <>
+                            <Button
+                                onClick={() => { navigate('/home') }}
+                                variant="nav"
+                                isActive={isActive('/home')}
+                            >
+                                <HomeIcon />
+                                Home
+                            </Button>
+                            <Button
+                                onClick={() => { navigate('/usuarios') }}
+                                variant="nav"
+                                isActive={isActive('/usuarios')}
+                            >
+                                <User2Icon />
+                                Users
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button
+                                onClick={() => { navigate('/home') }}
+                                variant='collapsed'
+                                isActive={isActive('/home')} >
+                                <HomeIcon />
+                            </Button>
+                            <Button
+                                onClick={() => { navigate('/usuarios') }}
+                                variant='collapsed'
+                                isActive={isActive('/usuarios')}>
+                                <User2Icon />
+                            </Button>
+                        </>
+
+                    )}
                 </div>
             </div>
-            <div id='nav-header'>
+            <div className='nav-header'>
+                <div className="user-name-cont">
+                    {userName}
+                </div>
                 <div className="logout-button-container">
                     <Button
                         onClick={logout}
