@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import '../../../styles/NavBar.css';
+import '../layouts/Navbar.css';
 import { useAuth } from '../../../context/AuthContext';
 import { ArrowBigLeft, ArrowBigRight, HomeIcon, LogOut, User2Icon } from 'lucide-react';
 import { Button } from '../Button';
