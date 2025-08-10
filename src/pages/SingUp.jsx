@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/common/Button/Button.jsx';
-import '../styles/Signup.css';
+import '../styles/Signup.css'; 
 
 export function SignUp() {
 
