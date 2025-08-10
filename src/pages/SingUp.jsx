@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/common/Button/Button.jsx';
-import '../styles/Signup.css'; 
+import '../styles/Signup.css';
+import { useSignup } from '../hooks/useSignup.js';
 
 export function SignUp() {
-
     const navigate = useNavigate();
-    const handleSubmit = () => {
-        alert('Teste');
-    }
+    const { formData, handleInputChange, handleSubmit, emailInputRef } = useSignup();
+
+    const isValidEmail = formData.email && /\S+@\S+\.\S+/.test(formData.email);
 
     return (
         <>
@@ -25,28 +25,72 @@ export function SignUp() {
                     <form onSubmit={handleSubmit}>
                         <div className='row'>
                             <label> Name </label>
-                            <input type="text" name="name" placeholder="Full name" />
+                            <input
+                                type="text"
+                                name='fullName'
+                                value={formData.fullName}
+                                onChange={handleInputChange} required
+                                placeholder="Full name" />
                         </div>
                         <div className='row'>
                             <label> Email </label>
-                            <input type="text" name="email" placeholder="E-mail" />
+                            <input
+                                type="text"
+                                name="email"
+                                ref={emailInputRef}
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                placeholder="E-mail" />
+                        </div>
+                        {!isValidEmail && formData.email && (
+                            <span className="error-message">Email inválido</span>
+                        )}
+                        <div className='col'>
+                            <div className='row'>
+                                <label> Password </label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleInputChange} />
+                            </div>
+                            <div className='row'>
+                                <label>Confirm password</label>
+                                <input
+                                    type="password"
+                                    name="confirmPassword"
+                                    value={formData.confirmPassword}
+                                    onChange={handleInputChange} />
+                            </div>
                         </div>
                         <div className='col'>
                             <div className='row'>
                                 <label> Birth Date</label>
-                                <input type="date" name="birth_date" />
+                                <input
+                                    type="date"
+                                    name="birth_date"
+                                    value={formData.birth_date}
+                                    onChange={handleInputChange} />
                             </div>
                             <div className='row'>
                                 <label>Age</label>
-                                <input type="text" name="age" />
+                                <input
+                                    type="text"
+                                    name="age"
+                                    value={formData.age}
+                                    onChange={handleInputChange} />
                             </div>
                         </div>
                         <div className='row'>
                             <label>Gender</label>
-                            <select type="date" name="birth_date">
+                            <select
+                                type="text"
+                                name="gender"
+                                value={formData.gender || ''}
+                                onChange={handleInputChange}>
                                 <option value="---">---</option>
-                                <option value="Female">Female</option>
-                                <option value="Male">Male</option>
+                                <option value="Feminino">Female</option>
+                                <option value="Masculino">Male</option>
                             </select>
                         </div>
                         <Button type='submit'>Save</Button>
