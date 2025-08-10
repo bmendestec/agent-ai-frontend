@@ -19,7 +19,8 @@ export default function Login() {
             <div className="header-initial">
                 <img className="logo-header" src="src/assets/sciencebot_logo.png" alt="" />
                 <button className="login-header-button" onClick={() => { navigate('/sign-up') }}>
-                    Free trial</button>
+                    Free trial
+                </button>
             </div>
             <div className="login-container">
                 <div className='login-form'>
