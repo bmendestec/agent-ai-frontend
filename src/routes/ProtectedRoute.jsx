@@ -8,7 +8,6 @@ const ProtectedRoute = ({ children }) => {
     const { loading } = useAuth();
     const getCurrentUser = localStorage.getItem('idUser');
     const [isOpen, setIsOpen] = useState(false);
-
     if (loading) {
         return (
             <div>

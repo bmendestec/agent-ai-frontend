@@ -7,7 +7,7 @@ import { Button } from '../Button';
 export function NavBar({ children, isOpen, setIsOpen }) {
     const navigate = useNavigate();
     const location = useLocation();
-    const { logout } = useAuth();
+    const { logout, userName } = useAuth();
     const isActive = (path) => location.pathname === path;
 
     return (
@@ -64,7 +64,10 @@ export function NavBar({ children, isOpen, setIsOpen }) {
                     )}
                 </div>
             </div>
-            <div id='nav-header'>
+            <div className='nav-header'>
+                <div className="user-name-cont">
+                    {userName}
+                </div>
                 <div className="logout-button-container">
                     <Button
                         onClick={logout}
