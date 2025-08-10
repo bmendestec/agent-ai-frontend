@@ -16,6 +16,9 @@
     padding: 0.5rem 1rem;
     border-radius: 4px;
     font-weight: 500;
+    background-color: transparent;
+    color: var(--text-color-light);
+    width: 90%;
 }
 
 .button--nav:hover {
