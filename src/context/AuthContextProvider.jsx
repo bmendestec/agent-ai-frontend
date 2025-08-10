@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
             return;
         }
         setUser(userStored);
-        setUserName(userStored);
+        getUserName(userStored);
         setLoading(false);
     }, []);
 
