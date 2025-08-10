@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import '../layouts/Navbar.css';
 import { useAuth } from '../../../context/AuthContext';
 import { ArrowBigLeft, ArrowBigRight, HomeIcon, LogOut, User2Icon } from 'lucide-react';
-import { Button } from '../Button';
+import { Button } from '../button';
 
 export function NavBar({ children, isOpen, setIsOpen }) {
     const navigate = useNavigate();
