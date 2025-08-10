@@ -7,3 +7,21 @@ body {
   background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
   text-align: center;
 }
+
+.row {
+  display: flex;
+  flex-direction: column;
+}
+
+.col {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+input,
+select {
+  padding: 10px;
+  border-radius: 10px;
+  border-color: transparent;
+}
