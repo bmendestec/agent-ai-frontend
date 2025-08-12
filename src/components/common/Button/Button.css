@@ -31,7 +31,8 @@
     width: 90%;
 }
 
-.button--nav:hover {
+.button--nav:hover,
+.button--collapsed:hover {
     background-color: var(--hover-color);
 }
 
