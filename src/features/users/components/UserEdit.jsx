@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../../../components/common/button";
 import { useEdit } from "../hooks/useEdit";
 import './UserEdit.css';
@@ -13,6 +13,7 @@ export default function UserEdit() {
     const date = new Date(formData.birth_date);
     const zoned = timezone(date, 'America/Sao_Paulo');
     const birthDate = formatDate(timezone(zoned, 'America/Sao_Paulo', '%Y/%m/%d'));
+    const navigate = useNavigate();
 
     return (
         <>
@@ -72,7 +73,19 @@ export default function UserEdit() {
                             <option value="Masculino">Male</option>
                         </select>
                     </div>
-                    <Button type='submit' variant="save">Save</Button>
+                    <div className="buttons-deck">
+                        <Button
+                            type='submit'
+                            variant="save">
+                            Save
+                        </Button>
+                        <Button
+                            type='submit'
+                            variant="cancel"
+                            onClick={() => {navigate('/usuarios')}}>
+                            Cancel
+                        </Button>
+                    </div>
                 </form>
             </div>
         </>

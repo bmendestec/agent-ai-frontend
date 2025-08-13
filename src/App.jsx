@@ -7,6 +7,7 @@ import UsersList from './features/users/components/UsersList';
 import { SignUp } from './pages/SingUp';
 import Integrations from './features/integrations-center/components/Integrations';
 import UserEdit from './features/users/components/UserEdit';
+import Dashboards from './pages/Dashboards';
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/sign-up' element={<SignUp />} />
-        <Route path='/dashboard' element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path='/dashboard' element={<ProtectedRoute><Dashboards /></ProtectedRoute>} />
         <Route path='/integrations' element={<ProtectedRoute><Integrations /></ProtectedRoute>} />
         <Route path='/usuarios' element={<ProtectedRoute><UsersList /></ProtectedRoute>} />
         <Route path='/edit-user' element={<ProtectedRoute><UserEdit /></ProtectedRoute>} />

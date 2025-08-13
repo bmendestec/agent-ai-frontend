@@ -17,6 +17,16 @@
     color: var(--text-color-light);
 }
 
+.button--cancel:hover {
+    background-color: rgba(255, 0, 0, 0.562);
+}
+
+.button--cancel {
+    background-color: red;
+    color: var(--text-color-light);
+    width: 20%;
+}
+
 .button--nav {
     display: flex;
     flex-direction: row;
@@ -35,6 +45,7 @@
     background-color: var(--save-color-btn);
     color: var(--text-color-light);
     border: 1px solid var(--border-color);    
+    width: 20%;
 }
 
 .button--save:hover {
