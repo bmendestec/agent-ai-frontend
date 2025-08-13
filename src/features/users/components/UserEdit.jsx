@@ -80,7 +80,7 @@ export default function UserEdit() {
                             Save
                         </Button>
                         <Button
-                            type='submit'
+                            type='cancel'
                             variant="cancel"
                             onClick={() => {navigate('/usuarios')}}>
                             Cancel
