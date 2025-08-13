@@ -6,6 +6,7 @@ import './UsersList.css';
 export default function UsersList() {
     const { fetchUserData, handleDeleteUser, loading } = useUsers();
     const [users, setUsers] = useState([]);
+    const [reloadPanel, setReloadPanel] = useState(null);
 
     const fetchUsers = async () => {
         const data = await fetchUserData();
@@ -15,6 +16,12 @@ export default function UsersList() {
     useEffect(() => {
         fetchUsers();
     }, []);
+
+    useEffect(() => {
+        if (!reloadPanel) return;
+        setReloadPanel(false);
+        fetchUsers();
+    }, [reloadPanel]);
 
     const handleEdit = (id) => {
         alert(`You've clicked on the ${id} user id`);
@@ -66,7 +73,7 @@ export default function UsersList() {
                                         <button
                                             onClick={(e) => {
                                                 e.stopPropagation();
-                                                handleDeleteUser(user.id)
+                                                handleDeleteUser(user.id, setReloadPanel);
                                             }}>
                                             <Trash2 />
                                         </button>

@@ -9,7 +9,7 @@ export function useUsers() {
 
     const fetchUserData = async () => {
         try {
-            const userStored = localStorage.getItem('email');
+            const userStored = localStorage.getItem('idUser');
             const tokenStored = localStorage.getItem('authToken');
             if (!userStored && !tokenStored) {
                 setLoading(false);
