@@ -2,10 +2,11 @@ import Card from '../components/common/Card/Card';
 import '../styles/Dashboards.css';
 import { useUsers } from '../features/users/hooks/useUsers';
 import { useEffect, useState } from 'react';
+import timezone from 'timezone';
 
 export default function Dashboards() {
     const [users, setUsers] = useState([]);
-    const { fetchUserData } = useUsers();
+    const { fetchUserData, formatDate } = useUsers();
 
     const fetchUsers = async () => {
         const data = await fetchUserData();
@@ -26,9 +27,30 @@ export default function Dashboards() {
                 <div className="main-card">
                     {users.map((user) => (
                         <Card title={user.name}>
-                            <p>Email: {user.email}</p>
-                            <p>Age: {user.age}</p>
-                            <p>Gender: {user.gender}</p>
+                            <div className="card-label">
+                                <label>Email: </label>
+                            </div>
+                            <div className="card-info">
+                                <p>{user.email}</p>
+                            </div>
+                            <div className="card-label">
+                                <label>Birth date: </label>
+                            </div>
+                            <div className="card-info">
+                                <p>{formatDate(timezone(timezone(new Date(user.birth_date), 'America/Sao_Paulo'), 'America/Sao_Paulo', '%Y/%m/%d'))}</p>
+                            </div>
+                            <div className="card-label">
+                                <label>Age: </label>
+                            </div>
+                            <div className="card-info">
+                                <p>{user.age}</p>
+                            </div>
+                            <div className="card-label">
+                                <label>Gender: </label>
+                            </div>
+                            <div className="card-info">
+                                <p>{user.gender}</p>
+                            </div>
                         </Card>
                     ))}
                 </div>

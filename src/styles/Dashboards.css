@@ -3,6 +3,7 @@
     padding: 15px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    max-height: 255px;
 }
 
 .main-dash-container {

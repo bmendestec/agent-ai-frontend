@@ -18,7 +18,7 @@
   --text-color: #0f0f0f;
   --text-color-light: #f0f0f0;
   --border-color: rgb(148, 146, 146);
-  --shadow-color: rgba(175, 175, 175, 0.3);
+  --shadow-color: rgba(0, 0, 0, 0.12);
   --hover-color: gray;
   --save-color-btn: rgba(0, 128, 0, 0.685);
   --save-color-btn-h: rgba(0, 128, 0, 0.418);
