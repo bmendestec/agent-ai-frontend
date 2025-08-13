@@ -25,3 +25,10 @@
     border-bottom: 1px solid var(--border-color);
     overflow-x: auto;
 }
+
+.card-details label {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}

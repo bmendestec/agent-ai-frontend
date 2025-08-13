@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useUsers } from "../hooks/useUsers";
-import { Edit2, Trash2 } from "lucide-react";
+import { Edit2, PlusCircleIcon, Trash2 } from "lucide-react";
 import './UsersList.css';
 import { useNavigate } from "react-router-dom";
 import timezone from "timezone";
+import { Button } from "../../../components/common/button";
 
 export default function UsersList() {
     const { fetchUserData, handleDeleteUser, formatDate, loading } = useUsers();
@@ -35,6 +36,12 @@ export default function UsersList() {
         <>
             <div className='title'>
                 <h1>Users list</h1>
+                <Button
+                    onClick={() => {navigate('/new-user')}}
+                    variant="handle-bar-add">
+                    <h3>Add user</h3>
+                    <PlusCircleIcon />
+                </Button>
             </div>
             {loading ? (
                 <span className="visually-hidden">Loading...</span>

@@ -86,3 +86,14 @@
 .button--logout:hover {
     background-color: var(--hover-color);
 }
+
+.button--handle-bar-add {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 15px 0 0;
+}
+
+.button--handle-bar-add h3 {
+    margin: 0;
+}
