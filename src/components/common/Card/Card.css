@@ -6,6 +6,7 @@
     align-items: center;
     border-radius: 20px;
     box-shadow: 0 4px 16px var(--shadow-color);
+    cursor: pointer;
 }
 
 .card-details {

@@ -3,10 +3,17 @@ import '../styles/Dashboards.css';
 import { useUsers } from '../features/users/hooks/useUsers';
 import { useEffect, useState } from 'react';
 import timezone from 'timezone';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboards() {
     const [users, setUsers] = useState([]);
     const { fetchUserData, formatDate } = useUsers();
+    const navigate = useNavigate();
+
+    const handleEdit = (id) => {
+        if (!id) return;
+        navigate('/edit-user', { state: { userId: id } });
+    }
 
     const fetchUsers = async () => {
         const data = await fetchUserData();
@@ -26,7 +33,8 @@ export default function Dashboards() {
             <div className="main-dash-container">
                 <div className="main-card">
                     {users.map((user) => (
-                        <Card title={user.name}>
+                        <Card title={user.name}
+                            onDoubleClick={() => { handleEdit(user.id) }}>
                             <div className="card-label">
                                 <label>Email: </label>
                             </div>
