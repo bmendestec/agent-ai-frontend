@@ -1,13 +1,20 @@
 import Card from '../components/common/Card/Card';
 import '../styles/Dashboards.css';
+import { useUsers } from '../features/users/hooks/useUsers';
+import { useEffect, useState } from 'react';
 
 export default function Dashboards() {
-    const mockCards = [
-        { title: 'Card 1' },
-        { title: 'Card 2' },
-        { title: 'Card 3' },
-        { title: 'Card 4' },
-    ]
+    const [users, setUsers] = useState([]);
+    const { fetchUserData } = useUsers();
+
+    const fetchUsers = async () => {
+        const data = await fetchUserData();
+        setUsers(data);
+    }
+
+    useEffect(() => {
+        fetchUsers();
+    }, []);
 
     return (
         <>
@@ -17,39 +24,12 @@ export default function Dashboards() {
             <h2>Main Dash</h2>
             <div className="main-dash-container">
                 <div className="main-card">
-
-                    {mockCards.map((card) => (
-                        <Card title={card.title} />
-                    ))}
-                </div>
-                <div className="main-card">
-
-                    {mockCards.map((card) => (
-                        <Card title={card.title} />
-                    ))}
-                </div>
-                <div className="main-card">
-
-                    {mockCards.map((card) => (
-                        <Card title={card.title} />
-                    ))}
-                </div>
-                <div className="main-card">
-
-                    {mockCards.map((card) => (
-                        <Card title={card.title} />
-                    ))}
-                </div>
-                <div className="main-card">
-
-                    {mockCards.map((card) => (
-                        <Card title={card.title} />
-                    ))}
-                </div>
-                <div className="main-card">
-
-                    {mockCards.map((card) => (
-                        <Card title={card.title} />
+                    {users.map((user) => (
+                        <Card title={user.name}>
+                            <p>Email: {user.email}</p>
+                            <p>Age: {user.age}</p>
+                            <p>Gender: {user.gender}</p>
+                        </Card>
                     ))}
                 </div>
             </div>

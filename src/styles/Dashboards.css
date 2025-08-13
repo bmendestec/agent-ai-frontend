@@ -1,12 +1,12 @@
 .main-card {
-    display: flex;
-    flex-direction: row;
     gap: 10px;
-    height: 40%;
     padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .main-dash-container {
     height: 80%;
     overflow: auto;
+    padding: 5px;
 }

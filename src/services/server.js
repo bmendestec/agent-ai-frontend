@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    // baseURL: 'https://task-app-backend-production-eb33.up.railway.app/',     
-    baseURL: 'http://localhost:8080',     
+    baseURL: 'https://task-app-backend-production-fe04.up.railway.app/',     
+    // baseURL: 'http://localhost:8080',     
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
