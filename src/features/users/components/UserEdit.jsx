@@ -58,7 +58,8 @@ export default function UserEdit() {
                                 type="text"
                                 name="age"
                                 value={formData.age}
-                                onChange={handleChange} />
+                                onChange={handleChange} 
+                                readOnly />
                         </div>
                     </div>
                     <div className='row'>
