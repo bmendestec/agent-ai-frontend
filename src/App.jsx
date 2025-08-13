@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import ProtectedRoute from './routes/ProtectedRoute';
 import UsersList from './features/users/components/UsersList';
 import { SignUp } from './pages/SingUp';
+import Integrations from './features/integrations-center/components/Integrations';
 
 function App() {
 
@@ -13,7 +14,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/sign-up' element={<SignUp />} />
-        <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path='/dashboard' element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path='/integrations' element={<ProtectedRoute><Integrations /></ProtectedRoute>} />
         <Route path='/usuarios' element={<ProtectedRoute><UsersList /></ProtectedRoute>} />
       </Routes>
     </>

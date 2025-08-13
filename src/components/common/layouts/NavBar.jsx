@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../layouts/Navbar.css';
 import { useAuth } from '../../../context/AuthContext';
-import { ArrowBigLeft, ArrowBigRight, HomeIcon, LogOut, User2Icon } from 'lucide-react';
+import { ArrowBigLeft, ArrowBigRight, HomeIcon, LayoutDashboardIcon, LogOut, PlugZap, User2Icon } from 'lucide-react';
 import { Button } from '../Button/Button.jsx';
 
 export function NavBar({ children, isOpen, setIsOpen }) {
@@ -29,12 +29,20 @@ export function NavBar({ children, isOpen, setIsOpen }) {
                     {!isOpen ? (
                         <>
                             <Button
-                                onClick={() => { navigate('/home') }}
+                                onClick={() => { navigate('/dashboard') }}
                                 variant="nav"
-                                isActive={isActive('/home')}
+                                isActive={isActive('/dashboard')}
                             >
-                                <HomeIcon />
-                                Home
+                                <LayoutDashboardIcon />
+                                Dashboards
+                            </Button>
+                            <Button
+                                onClick={() => { navigate('/integrations') }}
+                                variant="nav"
+                                isActive={isActive('/integrations')}
+                            >
+                                <PlugZap />
+                                Integrations
                             </Button>
                             <Button
                                 onClick={() => { navigate('/usuarios') }}
@@ -48,10 +56,16 @@ export function NavBar({ children, isOpen, setIsOpen }) {
                     ) : (
                         <>
                             <Button
-                                onClick={() => { navigate('/home') }}
+                                onClick={() => { navigate('/dashboard') }}
                                 variant='collapsed'
-                                isActive={isActive('/home')} >
-                                <HomeIcon />
+                                isActive={isActive('/dashboard')} >
+                                <LayoutDashboardIcon />
+                            </Button>
+                            <Button
+                                onClick={() => { navigate('/integrations') }}
+                                variant='collapsed'
+                                isActive={isActive('/integrations')} >
+                                <PlugZap />
                             </Button>
                             <Button
                                 onClick={() => { navigate('/usuarios') }}

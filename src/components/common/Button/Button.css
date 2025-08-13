@@ -31,8 +31,18 @@
     width: 90%;
 }
 
+.button--int {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid var(--border-color);
+}
+
 .button--nav:hover,
-.button--collapsed:hover {
+.button--collapsed:hover,
+.button--int:hover {
     background-color: var(--hover-color);
 }
 

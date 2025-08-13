@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
                         setLoading(false);
                         getUserName(idUser);
                         setUser(idUser);
-                        navigate('/home');
+                        navigate('/dashboard');
                     } else {
                         console.log('Erro ao validar o token. Tente novamente.');
                     }
@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }) => {
                         localStorage.setItem('authToken', accessToken);
                         localStorage.setItem('idUser', idUser);
                         setLoading(false);
-                        navigate('/home');
+                        navigate('/dashboard');
                     })
                 })
 
@@ -128,7 +128,7 @@ export const AuthProvider = ({ children }) => {
                 // localStorage.setItem('authToken', accessToken);
                 // localStorage.setItem('idUser', idUser);
                 // setLoading(false);
-                // navigate('/home');
+                // navigate('/dashboard');
                 // });
             } else {
                 console.log("Login cancelado ou não autorizado");
