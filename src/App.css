@@ -11,12 +11,14 @@ body {
 .row {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .col {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  justify-content: center;
 }
 
 input,
@@ -24,4 +26,5 @@ select {
   padding: 10px;
   border-radius: 10px;
   border-color: transparent;
+  font-size: large;
 }

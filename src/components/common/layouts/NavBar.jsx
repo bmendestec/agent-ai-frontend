@@ -47,7 +47,7 @@ export function NavBar({ children, isOpen, setIsOpen }) {
                             <Button
                                 onClick={() => { navigate('/usuarios') }}
                                 variant="nav"
-                                isActive={isActive('/usuarios')}
+                                isActive={isActive('/usuarios') || isActive('/edit-user')}
                             >
                                 <User2Icon />
                                 Users
@@ -70,7 +70,7 @@ export function NavBar({ children, isOpen, setIsOpen }) {
                             <Button
                                 onClick={() => { navigate('/usuarios') }}
                                 variant='collapsed'
-                                isActive={isActive('/usuarios')}>
+                                isActive={isActive('/usuarios') || isActive('/edit-user')}>
                                 <User2Icon />
                             </Button>
                         </>

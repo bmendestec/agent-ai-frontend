@@ -20,4 +20,6 @@
   --border-color: rgb(148, 146, 146);
   --shadow-color: rgba(175, 175, 175, 0.3);
   --hover-color: gray;
+  --save-color-btn: rgba(0, 128, 0, 0.685);
+  --save-color-btn-h: rgba(0, 128, 0, 0.418);
 }

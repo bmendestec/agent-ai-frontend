@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { useUsers } from "../hooks/useUsers";
 import { Edit2, Trash2 } from "lucide-react";
 import './UsersList.css';
+import { useNavigate } from "react-router-dom";
+import timezone from "timezone";
 
 export default function UsersList() {
-    const { fetchUserData, handleDeleteUser, loading } = useUsers();
+    const { fetchUserData, handleDeleteUser, formatDate, loading } = useUsers();
     const [users, setUsers] = useState([]);
     const [reloadPanel, setReloadPanel] = useState(null);
+    const navigate = useNavigate();
 
     const fetchUsers = async () => {
         const data = await fetchUserData();
@@ -24,7 +27,8 @@ export default function UsersList() {
     }, [reloadPanel]);
 
     const handleEdit = (id) => {
-        alert(`You've clicked on the ${id} user id`);
+        if (!id) return;
+        navigate('/edit-user', { state: { userId: id } });
     }
 
     return (
@@ -49,13 +53,14 @@ export default function UsersList() {
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map((user) => (
+                            {                            
+                            users.map((user) => (
                                 <tr key={user.id}
                                     onDoubleClick={() => { handleEdit(user.id) }}
                                 >
                                     <td>{user.name}</td>
                                     <td>{user.age}</td>
-                                    <td>{new Date(user.birth_date).toLocaleDateString('pt-BR')}</td>
+                                    <td>{formatDate(timezone(timezone(new Date(user.birth_date),'America/Sao_Paulo'),'America/Sao_Paulo','%Y/%m/%d'))}</td>
                                     <td>{user.gender}</td>
                                     <td>{user.email}</td>
                                     <td>

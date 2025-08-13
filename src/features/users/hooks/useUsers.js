@@ -19,12 +19,12 @@ export function useUsers() {
                     headers: {
                         Authorization: `Bearer ${tokenStored}`,
                     }
-                });                
+                });
                 if (findUserName.status !== 200) {
                     console.log('Erro ao buscar usuário:', findUserName.message);
                     return;
-                } else {  
-                    setLoading(false);                  
+                } else {
+                    setLoading(false);
                     setUser(findUserName.data);
                     return findUserName.data;
                 }
@@ -68,7 +68,7 @@ export function useUsers() {
     return {
         formatDate,
         setUser,
-        fetchUserData,   
+        fetchUserData,
         handleDeleteUser,
         handleDirectToEdit,
         user,
