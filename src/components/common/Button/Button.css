@@ -63,13 +63,21 @@
 
 .button--nav:hover,
 .button--collapsed:hover,
-.button--int:hover {
+.button--int:hover,
+.button--nav-tab:hover {
     background-color: var(--hover-color);
+    transition: background-color 0.2s ease;
 }
 
 .button--active {
     background-color: var(--hover-color);
     font-weight: bold;
+}
+
+.button--nav-tab {
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
 }
 
 .button--logout {

@@ -1,0 +1,30 @@
+.general-main-container {
+    margin: 20px;
+    display: grid;
+    justify-items: start;
+}
+
+.general-main-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    width: 50%;
+}
+
+.general-main-container label {
+    font-weight: bold;
+    font-size: 1.0rem;
+}
+
+.general-main-container input {
+    width: 100%;
+}
+
+.buttons-deck {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: flex-end;
+    width: 100%;
+}

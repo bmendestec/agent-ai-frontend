@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../layouts/Navbar.css';
 import { useAuth } from '../../../context/AuthContext';
-import { ArrowBigLeft, ArrowBigRight, HomeIcon, LayoutDashboardIcon, LogOut, PlugZap, User2Icon } from 'lucide-react';
+import { ArrowBigLeft, ArrowBigRight, HomeIcon, LayoutDashboardIcon, LogOut, PlugZap, Settings2Icon, User2Icon } from 'lucide-react';
 import { Button } from '../Button/Button.jsx';
 
 export function NavBar({ children, isOpen, setIsOpen }) {
@@ -52,6 +52,14 @@ export function NavBar({ children, isOpen, setIsOpen }) {
                                 <User2Icon />
                                 Users
                             </Button>
+                            <Button
+                                onClick={() => { navigate('/settings') }}
+                                variant="nav"
+                                isActive={isActive('/settings') || isActive('/settings-general')}
+                            >
+                                <Settings2Icon />
+                                Settings
+                            </Button>
                         </>
                     ) : (
                         <>
@@ -73,21 +81,29 @@ export function NavBar({ children, isOpen, setIsOpen }) {
                                 isActive={isActive('/usuarios') || isActive('/edit-user')}>
                                 <User2Icon />
                             </Button>
+                            <Button
+                                onClick={() => { navigate('/settings') }}
+                                variant='collapsed'
+                                isActive={isActive('/settings') || isActive('/settings-general')}>
+                                <Settings2Icon />
+                            </Button>
                         </>
 
                     )}
                 </div>
             </div>
-            <div className='nav-header'>
-                <div className="user-name-cont">
-                    {userName}
+            <div className="nav-header">
+                <div className={`user-name-cont ${!isOpen ? "uncollapsed-lg-btn" : "collapsed-lg-btn"}`}>
+                    <p>
+                        {userName}
+                    </p>
                 </div>
                 <div className="logout-button-container">
                     <Button
                         onClick={logout}
                         variant="logout"
                     >
-                        <LogOut size={25} className='logout-button-icon' />
+                        <LogOut size={`${!isOpen ? 25 : 15}`} className='logout-button-icon' />
                     </Button>
                 </div>
             </div>

@@ -15,12 +15,24 @@
     grid-template-rows: 5vh auto;
     grid-template-columns: 250px auto;
     transition: grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .collapsed {
-    grid-template-rows: 5vh auto;
+    grid-template-rows: 2vh auto;
     grid-template-columns: 70px auto;
     transition: grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);    
+}
+
+.uncollapsed-lg-btn p {
+    font-size: 1.2rem;
+    transition: grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1);    
+}
+
+.collapsed-lg-btn p {
+    font-size: 0.8rem;
+    transition: grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1);    
 }
 
 .c-collapsed {
