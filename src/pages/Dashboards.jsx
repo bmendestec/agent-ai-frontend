@@ -26,7 +26,7 @@ export default function Dashboards() {
 
     const mockDashboards = [
         { name: 'Main' },
-        // { name: 'Secondary' },
+        { name: 'Secondary' },
     ]
 
     return (

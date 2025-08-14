@@ -6,10 +6,8 @@
 }
 
 .list-container {
-    display: flex;
-    justify-content: center;
     overflow-y: auto;
-    flex-direction: column;
+    max-height: 750px;
 }
 
 .list-container table {

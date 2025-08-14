@@ -43,7 +43,8 @@ export default function NewUser() {
                                 type="password"
                                 name="password"
                                 value={formData.password}
-                                onChange={handleChange} />
+                                onChange={handleChange}
+                                placeholder="Password" />
                         </div>
                         <div className='row'>
                             <label> Confirm Password {!isSamePassword ? <OctagonX /> : <CircleCheckBig />}</label>
@@ -52,7 +53,8 @@ export default function NewUser() {
                                 type="password"
                                 name="confirmPassword"
                                 value={formData.confirmPassword}
-                                onChange={handleChange} />
+                                onChange={handleChange}
+                                placeholder="Confirm password" />
                         </div>
                     </div>
                     <div className='col'>

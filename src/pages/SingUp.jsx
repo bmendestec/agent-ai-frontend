@@ -2,12 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/common/Button/Button.jsx';
 import '../styles/Signup.css';
 import { useSignup } from '../hooks/useSignup.js';
+import { CircleCheckBig, MailCheck, MailX, OctagonX } from 'lucide-react';
 
 export function SignUp() {
     const navigate = useNavigate();
     const { formData, handleInputChange, handleSubmit, emailInputRef } = useSignup();
 
     const isValidEmail = formData.email && /\S+@\S+\.\S+/.test(formData.email);
+    const isSamePassword = formData.password === formData.confirmPassword;
 
     return (
         <>
@@ -33,18 +35,15 @@ export function SignUp() {
                                 placeholder="Full name" />
                         </div>
                         <div className='row'>
-                            <label> Email </label>
+                            <label> Email {!isValidEmail ? <MailX size={20} /> : <MailCheck size={20} />}</label>
                             <input
                                 type="text"
                                 name="email"
                                 ref={emailInputRef}
                                 value={formData.email}
-                                onChange={handleInputChange}
+                                onChange={handleInputChange} required
                                 placeholder="E-mail" />
                         </div>
-                        {!isValidEmail && formData.email && (
-                            <span className="error-message">Email inválido</span>
-                        )}
                         <div className='col'>
                             <div className='row'>
                                 <label> Password </label>
@@ -52,15 +51,15 @@ export function SignUp() {
                                     type="password"
                                     name="password"
                                     value={formData.password}
-                                    onChange={handleInputChange} />
+                                    onChange={handleInputChange} required/>
                             </div>
                             <div className='row'>
-                                <label>Confirm password</label>
+                                <label>Confirm password  {!isSamePassword ? <OctagonX size={20} /> : <CircleCheckBig size={20} />}</label>
                                 <input
                                     type="password"
                                     name="confirmPassword"
                                     value={formData.confirmPassword}
-                                    onChange={handleInputChange} />
+                                    onChange={handleInputChange} required/>
                             </div>
                         </div>
                         <div className='col'>
@@ -70,7 +69,7 @@ export function SignUp() {
                                     type="date"
                                     name="birth_date"
                                     value={formData.birth_date}
-                                    onChange={handleInputChange} />
+                                    onChange={handleInputChange} required/>
                             </div>
                             <div className='row'>
                                 <label>Age</label>
@@ -87,13 +86,18 @@ export function SignUp() {
                                 type="text"
                                 name="gender"
                                 value={formData.gender || ''}
-                                onChange={handleInputChange}>
-                                <option value="---">---</option>
+                                onChange={handleInputChange}
+                                required>
+                                <option value="">---</option>
                                 <option value="Feminino">Female</option>
                                 <option value="Masculino">Male</option>
                             </select>
                         </div>
-                        <Button type='submit'>Save</Button>
+                        <Button
+                            variant='save-signup'
+                            type='submit'>
+                            Save
+                        </Button>
                     </form>
                 </div>
             </div>
