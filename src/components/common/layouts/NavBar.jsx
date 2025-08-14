@@ -55,7 +55,7 @@ export function NavBar({ children, isOpen, setIsOpen }) {
                             <Button
                                 onClick={() => { navigate('/settings') }}
                                 variant="nav"
-                                isActive={isActive('/settings') || isActive('/settings-general')}
+                                isActive={isActive('/settings') || isActive('/settings-general') || isActive('/settings-dashboards')}
                             >
                                 <Settings2Icon />
                                 Settings
@@ -84,7 +84,7 @@ export function NavBar({ children, isOpen, setIsOpen }) {
                             <Button
                                 onClick={() => { navigate('/settings') }}
                                 variant='collapsed'
-                                isActive={isActive('/settings') || isActive('/settings-general')}>
+                                isActive={isActive('/settings') || isActive('/settings-general') || isActive('/settings-dashboards')}>
                                 <Settings2Icon />
                             </Button>
                         </>

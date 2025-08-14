@@ -11,6 +11,7 @@ import Dashboards from './pages/Dashboards';
 import NewUser from './features/users/components/UserNew';
 import Settings from './features/settings/Settings';
 import General from './features/settings/general-settings/General';
+import DashSettings from './features/settings/dashboards-settings/DashSettings';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/edit-user' element={<ProtectedRoute><UserEdit /></ProtectedRoute>} />
         <Route path='/settings' element={<ProtectedRoute><Settings /></ProtectedRoute>} />
         <Route path='/settings-general' element={<ProtectedRoute><Settings><General /></Settings></ProtectedRoute>} />
+        <Route path='/settings-dashboards' element={<ProtectedRoute><Settings><DashSettings /></Settings></ProtectedRoute>} />
       </Routes>
     </>
   )

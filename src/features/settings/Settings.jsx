@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/common/button";
 import './Settings.css';
+import { Settings2Icon } from "lucide-react";
 
 export default function Settings({ children }) {
     const navigate = useNavigate();
@@ -18,8 +19,22 @@ export default function Settings({ children }) {
                     isActive={isActive('/settings-general')}>
                     General settings
                 </Button>
+                <Button
+                    variant="nav-tab"
+                    onClick={() => { navigate('/settings-dashboards') }}
+                    isActive={isActive('/settings-dashboards')}>
+                    Dashboards settings
+                </Button>
             </div>
-            {children}
+            {isActive('/settings-dashboards') || isActive('/settings-general')
+                ? children
+                : (
+                    <>
+                        <div className="settings-main-container">
+                            <Settings2Icon size={100} />
+                        </div>
+                    </>
+                )}
         </>
     )
 }
