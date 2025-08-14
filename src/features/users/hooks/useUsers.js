@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiClient from "../../../services/server";
-import timezone from "timezone";
+import { useAuth } from "../../../context/AuthContext";
 
 export function useUsers() {
     const [user, setUser] = useState([]);
@@ -16,6 +16,7 @@ export function useUsers() {
         password: '',
         confirmPassword: '',
     });
+    const { getCookie } = useAuth();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,28 +37,15 @@ export function useUsers() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            alert('Por favor, insira um e-mail válido.');
-            return;
-        } else if (formData.password !== formData.confirmPassword) {
-            alert('As senhas não coincidem.');
-            return;
-        } else if (!formData.fullName) {
-            alert('Por favor, preencha o nome completo.');
-            return;
-        } else {
-            const date = new Date(formData.birth_date);
-            const zoned = timezone(date, 'America/Sao_Paulo');
-            const birthDate = formatDate(timezone(zoned, 'America/Sao_Paulo', '%Y/%m/%d'));
-            await addUser(
-                formData.fullName,
-                birthDate,
-                formData.age,
-                formData.gender,
-                formData.email,
-                formData.password
-            );
-        }
+        await addUser(
+            formData.fullName,
+            formData.birth_date,
+            formData.age,
+            formData.gender,
+            formData.email,
+            formData.password
+        );
+
     };
 
     async function addUser(fullName, birth_date, age, gender, email, password) {
@@ -93,8 +81,8 @@ export function useUsers() {
 
     const fetchUserData = async () => {
         try {
-            const userStored = localStorage.getItem('idUser');
-            const tokenStored = localStorage.getItem('authToken');
+            const userStored = getCookie('idUser');
+            const tokenStored = getCookie('authToken');
             if (!userStored && !tokenStored) {
                 setLoading(false);
                 navigate('/login');
@@ -131,7 +119,7 @@ export function useUsers() {
         if (id) {
             apiClient.delete(`/usuarios/${id}`, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+                    Authorization: `Bearer ${getCookie('authToken')}`,
                 }
             }).then(() => {
                 setUser(user.filter((user) => user.id !== id));

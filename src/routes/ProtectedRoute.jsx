@@ -5,8 +5,8 @@ import { useState } from "react";
 
 const ProtectedRoute = ({ children }) => {
 
-    const { loading } = useAuth();
-    const getCurrentUser = localStorage.getItem('idUser');
+    const { loading, getCookie } = useAuth();
+    const getCurrentUser = getCookie('idUser');
     const [isOpen, setIsOpen] = useState(false);
     if (loading) {
         return (

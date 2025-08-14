@@ -2,10 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/common/button"
 import { useUsers } from "../hooks/useUsers";
 import './UserNew.css';
+import { CircleCheckBig, MailCheck, MailX, OctagonX } from "lucide-react";
 
 export default function NewUser() {
     const { handleSubmit, handleChange, formData } = useUsers();
     const isValidEmail = formData.email && /\S+@\S+\.\S+/.test(formData.email);
+    const isSamePassword = formData.password === formData.confirmPassword;
     const navigate = useNavigate();
 
     return (
@@ -25,17 +27,15 @@ export default function NewUser() {
                             placeholder="Full name" />
                     </div>
                     <div className='row'>
-                        <label> Email </label>
+                        <label> Email {!isValidEmail ? <MailX /> : <MailCheck />} </label>
                         <input
+                            className={`${!isValidEmail ? "invalid-email" : "avalid-email"}`}
                             type="text"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
                             placeholder="E-mail" />
                     </div>
-                    {!isValidEmail && formData.email && (
-                        <span className="error-message">Email inválido</span>
-                    )}
                     <div className='col'>
                         <div className='row'>
                             <label> Password </label>
@@ -46,8 +46,9 @@ export default function NewUser() {
                                 onChange={handleChange} />
                         </div>
                         <div className='row'>
-                            <label> Confirm Password </label>
+                            <label> Confirm Password {!isSamePassword ? <OctagonX /> : <CircleCheckBig />}</label>
                             <input
+                                className={`${!isSamePassword ? "pass-not-same" : "pass-same"}`}
                                 type="password"
                                 name="confirmPassword"
                                 value={formData.confirmPassword}

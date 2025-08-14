@@ -14,8 +14,8 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         setLoading(true);
-        const userStored = localStorage.getItem('idUser');
-        const tokenStored = localStorage.getItem('authToken');
+        const userStored = getCookie('idUser');
+        const tokenStored = getCookie('authToken');
 
         if (!tokenStored && !userStored) {
             setUser(null);
@@ -44,8 +44,8 @@ export const AuthProvider = ({ children }) => {
                 if (response.data.message !== 'Invalid credentials') {
                     const { isValid } = await isTokenValid(token);
                     if (isValid) {
-                        localStorage.setItem('authToken', token);
-                        localStorage.setItem('idUser', idUser);
+                        document.cookie = `authToken=${token}; path=/; max-age=3600; secure`;
+                        document.cookie = `idUser=${idUser}; path=/; max-age=3600; secure`;
                         setLoading(false);
                         getUserName(idUser);
                         setUser(idUser);
@@ -67,6 +67,13 @@ export const AuthProvider = ({ children }) => {
             setLoading(false);
         });
 
+    };
+
+    const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return null;
     };
 
     const handleLoginFb = () => {
@@ -95,8 +102,8 @@ export const AuthProvider = ({ children }) => {
                         console.log(isUserExist);
                         setUserName(userRes.data.name);
                         const idUser = userRes.data.id;
-                        localStorage.setItem('authToken', accessToken);
-                        localStorage.setItem('idUser', idUser);
+                        document.cookie = `authToken=${accessToken}; path=/; max-age=3600; secure`;
+                        document.cookie = `idUser=${idUser}; path=/; max-age=3600; secure`;
                         setLoading(false);
                         navigate('/dashboard');
                     })
@@ -137,11 +144,11 @@ export const AuthProvider = ({ children }) => {
     };
 
     const checkToken = () => {
-        const token = localStorage.getItem('authToken');
-        const userId = localStorage.getItem('idUser');
+        const token = getCookie('authToken');
+        const userId = getCookie('idUser');
         if (token && userId) {
-            localStorage.removeItem('authToken');
-            localStorage.removeItem('idUser');
+            document.cookie = 'authToken=; path=/; max-age=0; secure';
+            document.cookie = 'idUser=; path=/; max-age=0; secure';
         }
     }
 
@@ -171,14 +178,14 @@ export const AuthProvider = ({ children }) => {
         setUserName(null);
         const logginOutRoute = await apiClient.get('/logout', {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+                Authorization: `Bearer ${getCookie('authToken')}`,
             }
         });
         if (logginOutRoute.status !== 200) {
             console.log('Erro ao fazer logout:', logginOutRoute.message);
         } else {
-            localStorage.removeItem('authToken');
-            localStorage.removeItem('idUser');
+            document.cookie = 'authToken=; path=/; max-age=0; secure';
+            document.cookie = 'idUser=; path=/; max-age=0; secure';
             setLoading(false);
             navigate('/');
         }
@@ -188,7 +195,7 @@ export const AuthProvider = ({ children }) => {
         if (!idUser) return;
         apiClient.get(`/usuarios/${idUser}`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+                Authorization: `Bearer ${getCookie('authToken')}`,
             }
         }).then((response) => {
             setUserName(response.data.user.name);
@@ -196,7 +203,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, loading, userName, handleLoginFb }}>
+        <AuthContext.Provider value={{ user, login, logout, loading, userName, handleLoginFb, getCookie }}>
             {children}
         </AuthContext.Provider>
     );

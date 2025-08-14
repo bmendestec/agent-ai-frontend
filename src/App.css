@@ -28,3 +28,7 @@ select {
   border-color: transparent;
   font-size: large;
 }
+
+input:focus {
+  border: none;
+}

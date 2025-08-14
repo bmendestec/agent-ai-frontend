@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import apiClient from "../../../services/server";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 export function useEdit({ userId } = {}) {
     const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ export function useEdit({ userId } = {}) {
         created_by: 'user',
         updated_by: 'user'
     })
+    const { getCookie } = useAuth();
 
     const navigate = useNavigate();
 
@@ -23,7 +25,7 @@ export function useEdit({ userId } = {}) {
 
         apiClient.get(`/usuarios/${userId}`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+                Authorization: `Bearer ${getCookie('authToken')}`,
             }
         }).then((response) => {
             setFormData(response.data.user);
@@ -45,7 +47,7 @@ export function useEdit({ userId } = {}) {
 
         apiClient.put(`/usuarios/${userId}`, formData, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+                Authorization: `Bearer ${getCookie('authToken')}`,
             }
         }).then((response) => {
             console.log('Usuário editado:', response.data);

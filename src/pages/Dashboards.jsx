@@ -24,44 +24,53 @@ export default function Dashboards() {
         fetchUsers();
     }, []);
 
+    const mockDashboards = [
+        { name: 'Main' },
+        // { name: 'Secondary' },
+    ]
+
     return (
         <>
             <div className="title">
                 <h1>Dashboards!</h1>
             </div>
-            <h2>Main Dash</h2>
             <div className="main-dash-container">
-                <div className="main-card">
-                    {users.map((user) => (
-                        <Card title={user.name}
-                            onDoubleClick={() => { handleEdit(user.id) }}>
-                            <div className="card-label">
-                                <label>Email: </label>
-                            </div>
-                            <div className="card-info">
-                                <p>{user.email}</p>
-                            </div>
-                            <div className="card-label">
-                                <label>Birth date: </label>
-                            </div>
-                            <div className="card-info">
-                                <p>{formatDate(timezone(timezone(new Date(user.birth_date), 'America/Sao_Paulo'), 'America/Sao_Paulo', '%Y/%m/%d'))}</p>
-                            </div>
-                            <div className="card-label">
-                                <label>Age: </label>
-                            </div>
-                            <div className="card-info">
-                                <p>{user.age}</p>
-                            </div>
-                            <div className="card-label">
-                                <label>Gender: </label>
-                            </div>
-                            <div className="card-info">
-                                <p>{user.gender}</p>
-                            </div>
-                        </Card>
-                    ))}
-                </div>
+                {mockDashboards.map((dash) => (
+                    <div className="dash-cards">
+                        <h2>{dash.name}</h2>
+                        <div className="main-card">
+                            {users.map((user) => (
+                                <Card title={user.name}
+                                    onDoubleClick={() => { handleEdit(user.id) }}>
+                                    <div className="card-label">
+                                        <label>Email: </label>
+                                    </div>
+                                    <div className="card-info">
+                                        <p>{user.email}</p>
+                                    </div>
+                                    <div className="card-label">
+                                        <label>Birth date: </label>
+                                    </div>
+                                    <div className="card-info">
+                                        <p>{formatDate(timezone(timezone(new Date(user.birth_date), 'America/Sao_Paulo'), 'America/Sao_Paulo', '%Y/%m/%d'))}</p>
+                                    </div>
+                                    <div className="card-label">
+                                        <label>Age: </label>
+                                    </div>
+                                    <div className="card-info">
+                                        <p>{user.age}</p>
+                                    </div>
+                                    <div className="card-label">
+                                        <label>Gender: </label>
+                                    </div>
+                                    <div className="card-info">
+                                        <p>{user.gender}</p>
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                ))}
             </div>
         </>
     )
